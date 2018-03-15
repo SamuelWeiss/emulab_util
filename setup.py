@@ -50,9 +50,9 @@ class EmulabUtil:
 
 	# actual implementation of in/out swapping, don't call this directly.
 	def swap_experiment(self, in_out):
-		wrapper = os.path.dirname(os.path.realpath(__file__)) + "lib/script_wrapper.py"
+		wrapper = os.path.dirname(os.path.realpath(__file__)) + "/lib/script_wrapper.py"
 
-		base_cmd = "{wrapper} --login={login} --cert={cert} swapexp -w -e {group},{project} {swap}0"
+		base_cmd = "{wrapper} --login={login} --cert={cert} swapexp -w -e {group},{project} {swap}"
 
 		complete_cmd = base_cmd.format(wrapper = wrapper,
 									   login = self.username,
@@ -69,6 +69,8 @@ class EmulabUtil:
 								shell=True)
 
 		stdout, stderr = proc.communicate()
+		print stdout
+		print stderr
 
 
 
@@ -248,7 +250,7 @@ def run_tests(util):
 def main():
 
 	# build before swapping in for niceness
-	build_mongo_locally()
+	# build_mongo_locally()
 
 	util = EmulabUtil(username,
 					  private_key_location,
@@ -258,11 +260,11 @@ def main():
 
 	util.swap_experiment_in()
 
-	server_setup(util)
+	# server_setup(util)
 
-	setup_database(util)
+	# setup_database(util)
 
-	run_tests(util)
+	# run_tests(util)
 
 if __name__ == '__main__':
 	main()
