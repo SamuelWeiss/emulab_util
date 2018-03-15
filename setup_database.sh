@@ -1,5 +1,8 @@
+sudo apt-get update
+sudo apt-get --assume-yes install mongodb
+
 # Connect to a replica set member and initiate the replica set
-mongo --host 10.1.1.5 --port 27018 --eval "rs.initiate(
+/var/mongo --host 10.1.1.5 --port 27018 --eval "rs.initiate(
   {
     _id : \"rs1\",
     members: [
